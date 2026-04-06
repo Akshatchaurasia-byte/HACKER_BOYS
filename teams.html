@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teams | DevMatch</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    .team-card { background: var(--card-bg-primary); padding: 1.5rem; border-radius: var(--radius-lg); border: 1px solid var(--border); transition: var(--transition); }
+    .team-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-card); background: var(--card-bg-hover); border-color: var(--border-hover); }
+    .team-title { font-size: 1.25rem; font-weight: 800; margin-bottom: 0.5rem; }
+    .team-desc { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.5; }
+    .team-member-count { font-size: 0.8rem; font-weight: 600; color: var(--accent-violet); margin-bottom: 1rem; }
+  </style>
+</head>
+<body>
+  <nav class="nav" id="main-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon">⚡</span>
+        <span class="logo-text">Dev<span class="logo-accent">Match</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link" id="nav-explore">Explore</a>
+        <a href="people.html" class="nav-link" id="nav-people">People</a>
+        <a href="teams.html" class="nav-link active" id="nav-teams">Teams</a>
+        <a href="matches.html" class="nav-link" id="nav-matches">Matches</a>
+        <a href="chat.html" class="nav-link" id="nav-chat">Chat</a>
+      </div>
+      <div class="nav-right">
+        <button class="btn btn-primary btn-sm" id="create-team-btn">+ Create Team</button>
+        <button class="btn btn-ghost btn-sm hidden" id="nav-logout-btn">Logout</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container" style="padding-top: calc(var(--nav-h) + 3rem);">
+    <div class="page-header">
+      <h1 class="page-title">Project Teams</h1>
+      <p class="page-sub">Browse open teams looking for members, or create your own squad.</p>
+    </div>
+
+    <div class="cards-grid" id="teams-grid">
+      <!-- Teams load here -->
+    </div>
+  </main>
+
+  <div id="create-team-modal" class="modal-overlay hidden">
+    <div class="modal">
+      <button class="modal-close" onclick="document.getElementById('create-team-modal').classList.add('hidden')">✕</button>
+      <h2 style="font-weight: 800; margin-bottom: 1rem;">Create a New Team</h2>
+      <form id="create-team-form">
+        <div class="form-group">
+          <label class="form-label">Project Name</label>
+          <input type="text" id="t-name" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Description / Pitch</label>
+          <textarea id="t-desc" class="form-input form-textarea" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center; margin-top: 1rem;">Launch Team</button>
+      </form>
+    </div>
+  </div>
+
+  <nav class="bottom-nav">
+    <a href="index.html" class="bottom-nav-item"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg><span>Explore</span></a>
+    <a href="teams.html" class="bottom-nav-item active"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg><span>Teams</span></a>
+    <a href="chat.html" class="bottom-nav-item"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg><span>Chat</span></a>
+  </nav>
+
+  <script src="js/data.js"></script>
+  <script src="js/api.js"></script>
+  <script>
+    if (!DevMatchAPI.isLoggedIn()) window.location.href = 'login.html';
+    
+    document.getElementById('nav-logout-btn').classList.remove('hidden');
+    document.getElementById('nav-logout-btn').addEventListener('click', DevMatchAPI.logout);
+
+    document.getElementById('create-team-btn').addEventListener('click', () => document.getElementById('create-team-modal').classList.remove('hidden'));
+
+    document.getElementById('create-team-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      DevMatchAPI.createTeam({
+        name: document.getElementById('t-name').value,
+        description: document.getElementById('t-desc').value
+      }).then(() => {
+        document.getElementById('create-team-modal').classList.add('hidden');
+        loadTeams();
+      }).catch(err => alert(err.error || 'Failed to create team'));
+    });
+
+    function loadTeams() {
+      DevMatchAPI.fetchTeams().then(data => {
+        const grid = document.getElementById('teams-grid');
+        grid.innerHTML = '';
+        if(!data.teams || data.teams.length === 0) {
+          grid.innerHTML = '<p>No teams founded yet. Be the first!</p>';
+          return;
+        }
+        data.teams.forEach(t => {
+          const card = document.createElement('div');
+          card.className = 'team-card tilt-card';
+          card.innerHTML = `
+            <div class="tilt-card-inner">
+              <div class="team-title">${t.name}</div>
+              <div class="team-member-count">${t.members ? t.members.length : 1} / 4 Members</div>
+              <div class="team-desc">${t.description}</div>
+              <button class="btn btn-primary btn-sm apply-btn" data-id="${t.id}">Apply to Join</button>
+            </div>
+          `;
+          grid.appendChild(card);
+        });
+
+        document.querySelectorAll('.apply-btn').forEach(btn => {
+          btn.addEventListener('click', function() {
+            var tid = this.getAttribute('data-id');
+            DevMatchAPI.applyToTeam(tid).then(res => {
+              alert('Application sent successfully!');
+              this.textContent = 'Application Sent';
+              this.disabled = true;
+            }).catch(err => alert(err.error || 'Failed to apply'));
+          });
+        });
+      });
+    }
+
+    loadTeams();
+  </script>
+</body>
+</html>
