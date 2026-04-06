@@ -1,0 +1,188 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up | DevMatch</title>
+  <meta name="description" content="Create your DevMatch profile and start finding teammates.">
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    .auth-page { min-height:100vh; display:flex; align-items:center; justify-content:center; padding:2rem 1.25rem; background:var(--bg-base); }
+    .auth-card { background:rgba(19,16,46,0.7); backdrop-filter:blur(20px); border:1px solid var(--border); border-radius:var(--radius-xl); padding:2.5rem; width:100%; max-width:480px; animation:form-slide-in 0.4s ease; }
+    .auth-logo { text-align:center; margin-bottom:1.5rem; }
+    .auth-logo a { text-decoration:none; }
+    .auth-icon { font-size:2.5rem; margin-bottom:0.75rem; display:block; }
+    .auth-title { font-size:1.6rem; font-weight:800; margin-bottom:0.5rem; color:var(--text-primary); }
+    .auth-sub { color:var(--text-secondary); font-size:0.9rem; }
+    .auth-form .form-group { margin-bottom:1.1rem; }
+    .auth-footer { text-align:center; margin-top:1.5rem; font-size:0.9rem; color:var(--text-muted); }
+    .auth-footer a { color:var(--accent-cyan); font-weight:600; text-decoration:none; }
+    .auth-footer a:hover { text-decoration:underline; }
+    .auth-error { background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.3); border-radius:var(--radius-sm); padding:0.75rem 1rem; font-size:0.85rem; color:#fca5a5; margin-bottom:1rem; display:none; align-items:center; gap:0.5rem; }
+    .auth-error.show { display:flex; }
+    .auth-btn { width:100%; justify-content:center; padding:0.85rem 1.5rem; font-size:1rem; }
+    .auth-btn:disabled { opacity:0.6; cursor:not-allowed; }
+    .pass-hint { font-size:0.75rem; color:var(--text-muted); margin-top:0.3rem; }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; }
+    @media(max-width:500px){ .form-row{grid-template-columns:1fr;} }
+  </style>
+</head>
+<body>
+  <div class="auth-page">
+    <div class="auth-card">
+      <div class="auth-logo">
+        <a href="index.html">
+          <span class="logo-text" style="font-size:1.6rem;">DEV<span class="text-grad">MATCH</span></span>
+        </a>
+      </div>
+      <div style="text-align:center; margin-bottom:2rem;">
+        <span class="auth-icon">&#x1F680;</span>
+        <h1 class="auth-title">Join DevMatch</h1>
+        <p class="auth-sub">Create your account and start matching with teammates</p>
+      </div>
+
+      <div class="auth-error" id="signup-error">
+        <span>&#x26A0;</span>
+        <span id="signup-error-msg">Something went wrong.</span>
+      </div>
+
+      <form class="auth-form" id="signup-form" autocomplete="on">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="signup-name">Full Name *</label>
+            <input type="text" id="signup-name" class="form-input" placeholder="Your name" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="signup-role">Role / Title *</label>
+            <input type="text" id="signup-role" class="form-input" placeholder="e.g. Frontend Dev">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="signup-email">Email Address *</label>
+          <input type="email" id="signup-email" class="form-input" placeholder="name@example.com" required autocomplete="email">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="signup-password">Password *</label>
+            <input type="password" id="signup-password" class="form-input" placeholder="Min 6 characters" required minlength="6" autocomplete="new-password">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="signup-confirm">Confirm Password *</label>
+            <input type="password" id="signup-confirm" class="form-input" placeholder="Re-enter password" required autocomplete="new-password">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="signup-exp">Experience Level</label>
+            <select id="signup-exp" class="form-input form-select">
+              <option value="beginner">Beginner</option>
+              <option value="intermediate" selected>Intermediate</option>
+              <option value="advanced">Advanced</option>
+              <option value="expert">Expert</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="signup-avail">Availability</label>
+            <select id="signup-avail" class="form-input form-select">
+              <option value="full-time">Full-time</option>
+              <option value="part-time">Part-time</option>
+              <option value="weekends">Weekends</option>
+              <option value="flexible" selected>Flexible</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="signup-github">GitHub Username</label>
+            <input type="text" id="signup-github" class="form-input" placeholder="your-username">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="signup-linkedin">LinkedIn</label>
+            <input type="text" id="signup-linkedin" class="form-input" placeholder="linkedin.com/in/you">
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-lg auth-btn" id="signup-btn">
+          Create Account
+        </button>
+      </form>
+
+      <div class="auth-footer">
+        Already have an account? <a href="login.html">Log in</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/api.js"></script>
+  <script>
+    (function() {
+      if (DevMatchAPI.getToken()) {
+        window.location.href = 'profile.html';
+        return;
+      }
+
+      document.getElementById('signup-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        var btn = document.getElementById('signup-btn');
+        var errEl = document.getElementById('signup-error');
+        var errMsg = document.getElementById('signup-error-msg');
+        errEl.classList.remove('show');
+
+        var name = document.getElementById('signup-name').value.trim();
+        var email = document.getElementById('signup-email').value.trim();
+        var password = document.getElementById('signup-password').value;
+        var confirm = document.getElementById('signup-confirm').value;
+        var role = document.getElementById('signup-role').value.trim();
+        var experience = document.getElementById('signup-exp').value;
+        var availability = document.getElementById('signup-avail').value;
+        var github = document.getElementById('signup-github').value.trim();
+        var linkedin = document.getElementById('signup-linkedin').value.trim();
+
+        if (password !== confirm) {
+          errMsg.textContent = 'Passwords do not match.';
+          errEl.classList.add('show');
+          return;
+        }
+        if (password.length < 6) {
+          errMsg.textContent = 'Password must be at least 6 characters.';
+          errEl.classList.add('show');
+          return;
+        }
+
+        btn.disabled = true;
+        btn.textContent = 'Creating account...';
+
+        DevMatchAPI.register({
+          name: name, email: email, password: password, role: role,
+          experience: experience, availability: availability,
+          github: github, linkedin: linkedin
+        })
+        .then(function(data) {
+          if (data.error) {
+            errMsg.textContent = data.error;
+            errEl.classList.add('show');
+            btn.disabled = false;
+            btn.textContent = 'Create Account';
+            return;
+          }
+          DevMatchAPI.saveAuth(data.token, data.user);
+          // Redirect to profile builder to pick skills/interests
+          window.location.href = 'profile.html';
+        })
+        .catch(function(err) {
+          errMsg.textContent = 'Connection error. Is the server running?';
+          errEl.classList.add('show');
+          btn.disabled = false;
+          btn.textContent = 'Create Account';
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

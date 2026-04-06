@@ -1,0 +1,205 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Profile — DevMatch</title>
+  <meta name="description" content="Create your DevMatch profile to find the perfect hackathon teammates based on your skills and interests." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="profile-page">
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon">⚡</span>
+        <span class="logo-text">Dev<span class="logo-accent">Match</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Explore</a>
+        <a href="people.html" class="nav-link">People</a>
+        <a href="matches.html" class="nav-link">My Matches</a>
+      </div>
+      <div class="nav-right">
+        <a href="index.html" class="btn btn-ghost btn-sm">← Back</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="profile-main">
+    <div class="profile-layout">
+      <!-- STEP TRACKER -->
+      <div class="step-tracker">
+        <div class="step-track">
+          <div class="step-item active" id="step-1">
+            <div class="step-dot">1</div>
+            <div class="step-label">Basics</div>
+          </div>
+          <div class="step-line"></div>
+          <div class="step-item" id="step-2">
+            <div class="step-dot">2</div>
+            <div class="step-label">Skills</div>
+          </div>
+          <div class="step-line"></div>
+          <div class="step-item" id="step-3">
+            <div class="step-dot">3</div>
+            <div class="step-label">Interests</div>
+          </div>
+          <div class="step-line"></div>
+          <div class="step-item" id="step-4">
+            <div class="step-dot">4</div>
+            <div class="step-label">Preview</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FORM CARD -->
+      <div class="profile-form-card" id="profile-form-card">
+        <!-- STEP 1 -->
+        <div class="form-step active" id="form-step-1">
+          <div class="form-step-header">
+            <div class="form-step-icon">👤</div>
+            <h1 class="form-step-title">Tell us about yourself</h1>
+            <p class="form-step-sub">This is what other builders will see on your profile.</p>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="inp-name">Full Name *</label>
+            <input type="text" id="inp-name" class="form-input" placeholder="e.g. Priya Sharma" autocomplete="name" />
+            <div class="form-error hidden" id="err-name">Please enter your name</div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="inp-title">Role / Title *</label>
+            <input type="text" id="inp-title" class="form-input" placeholder="e.g. Full Stack Developer, AI Researcher" />
+            <div class="form-error hidden" id="err-title">Please enter your role</div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="inp-bio">Short Bio</label>
+            <textarea id="inp-bio" class="form-input form-textarea" placeholder="Tell your future teammates what excites you about building…" rows="3"></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="inp-exp">Experience Level *</label>
+            <div class="exp-selector" id="exp-selector">
+              <button class="exp-btn" data-exp="beginner" type="button" id="exp-beginner">🌱 Beginner</button>
+              <button class="exp-btn" data-exp="intermediate" type="button" id="exp-intermediate">⚡ Intermediate</button>
+              <button class="exp-btn" data-exp="advanced" type="button" id="exp-advanced">🚀 Advanced</button>
+              <button class="exp-btn" data-exp="expert" type="button" id="exp-expert">🏆 Expert</button>
+            </div>
+            <div class="form-error hidden" id="err-exp">Please select your experience level</div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="inp-avail">Availability</label>
+            <select class="form-input form-select" id="inp-avail">
+              <option value="full-time">Full-time (40h/week)</option>
+              <option value="part-time">Part-time (20h/week)</option>
+              <option value="weekends">Weekends Only</option>
+              <option value="flexible">Flexible</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="inp-github">GitHub Username</label>
+            <div class="input-with-prefix">
+              <span class="input-prefix">github.com/</span>
+              <input type="text" id="inp-github" class="form-input with-prefix" placeholder="yourusername" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="inp-linkedin">LinkedIn URL</label>
+            <input type="url" id="inp-linkedin" class="form-input" placeholder="https://linkedin.com/in/yourname" />
+          </div>
+          <div class="form-nav">
+            <div></div>
+            <button class="btn btn-primary" id="step1-next">Next: Skills →</button>
+          </div>
+        </div>
+
+        <!-- STEP 2 -->
+        <div class="form-step" id="form-step-2">
+          <div class="form-step-header">
+            <div class="form-step-icon">🛠️</div>
+            <h2 class="form-step-title">What are your skills?</h2>
+            <p class="form-step-sub">Select all that apply. The more you choose, the better your matches.</p>
+          </div>
+          <div class="skills-grid" id="skills-grid">
+            <!-- populated by JS -->
+          </div>
+          <div class="form-error hidden" id="err-skills">Please select at least one skill</div>
+          <div class="custom-skill-row">
+            <input type="text" class="form-input" id="custom-skill-input" placeholder="Add a custom skill…" />
+            <button class="btn btn-ghost btn-sm" id="add-custom-skill" type="button">+ Add</button>
+          </div>
+          <div class="selected-skills" id="selected-skills-display">
+            <span class="form-label">Selected:</span>
+            <div class="selected-chips" id="selected-chips"></div>
+          </div>
+          <div class="form-nav">
+            <button class="btn btn-ghost" id="step2-back">← Back</button>
+            <button class="btn btn-primary" id="step2-next">Next: Interests →</button>
+          </div>
+        </div>
+
+        <!-- STEP 3 -->
+        <div class="form-step" id="form-step-3">
+          <div class="form-step-header">
+            <div class="form-step-icon">🎯</div>
+            <h2 class="form-step-title">Project interests</h2>
+            <p class="form-step-sub">What kind of projects do you want to build? Select your top domains.</p>
+          </div>
+          <div class="interests-grid" id="interests-grid">
+            <!-- populated by JS -->
+          </div>
+          <div class="form-error hidden" id="err-interests">Please select at least one interest</div>
+          <div class="form-group" style="margin-top:1.5rem;">
+            <label class="form-label">Looking for teammates with which skills? (optional)</label>
+            <p class="form-hint">This helps us find complementary matches for you.</p>
+            <div class="skills-grid small" id="seeking-grid"><!-- populated --></div>
+          </div>
+          <div class="form-nav">
+            <button class="btn btn-ghost" id="step3-back">← Back</button>
+            <button class="btn btn-primary" id="step3-next">Preview Profile →</button>
+          </div>
+        </div>
+
+        <!-- STEP 4: PREVIEW -->
+        <div class="form-step" id="form-step-4">
+          <div class="form-step-header">
+            <div class="form-step-icon">✨</div>
+            <h2 class="form-step-title">Your Profile Preview</h2>
+            <p class="form-step-sub">This is how other builders will see you. Looks good?</p>
+          </div>
+          <div id="profile-preview-card" class="profile-preview"></div>
+          <div class="form-nav" style="margin-top:2rem">
+            <button class="btn btn-ghost" id="step4-back">← Edit</button>
+            <button class="btn btn-primary btn-lg" id="submit-profile">🚀 Launch Profile & Find Matches</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <nav class="bottom-nav">
+    <a href="index.html" class="bottom-nav-item">
+      <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+      <span>Explore</span>
+    </a>
+    <a href="people.html" class="bottom-nav-item">
+      <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+      <span>People</span>
+    </a>
+    <a href="matches.html" class="bottom-nav-item">
+      <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+      <span>Matches</span>
+    </a>
+    <a href="profile.html" class="bottom-nav-item active">
+      <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+      <span>Profile</span>
+    </a>
+  </nav>
+
+  <script src="js/data.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/matcher.js"></script>
+  <script src="js/profile.js"></script>
+</body>
+</html>

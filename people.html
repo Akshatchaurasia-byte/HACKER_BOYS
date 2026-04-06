@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>People — DevMatch</title>
+  <meta name="description" content="Browse all builders on DevMatch. Filter by skill, experience level, and project domain to find the perfect teammate." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon">⚡</span>
+        <span class="logo-text">Dev<span class="logo-accent">Match</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Explore</a>
+        <a href="people.html" class="nav-link active">People</a>
+        <a href="matches.html" class="nav-link">My Matches</a>
+      </div>
+      <div class="nav-right">
+        <a href="profile.html" class="btn btn-primary btn-sm">Create Profile</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="main-content">
+    <div class="container">
+      <div class="page-header">
+        <h1 class="page-title">All Builders</h1>
+        <p class="page-sub">Find your perfect teammate. Filter by skill, experience, or domain.</p>
+      </div>
+
+      <div class="people-filters">
+        <div class="search-bar-inline">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="text" class="search-bar-input" id="people-search" placeholder="Search by name, skill, or interest…" />
+        </div>
+        <div class="filter-row" style="margin-top:1rem; flex-wrap:wrap; gap:0.75rem;">
+          <select class="filter-select" id="people-skill-filter">
+            <option value="all">All Skills</option>
+          </select>
+          <select class="filter-select" id="people-exp-filter">
+            <option value="all">All Levels</option>
+            <option value="beginner">Beginner</option>
+            <option value="intermediate">Intermediate</option>
+            <option value="advanced">Advanced</option>
+            <option value="expert">Expert</option>
+          </select>
+          <select class="filter-select" id="people-domain-filter">
+            <option value="all">All Domains</option>
+            <option value="AI & ML">AI & ML</option>
+            <option value="Web3">Web3</option>
+            <option value="FinTech">FinTech</option>
+            <option value="SaaS">SaaS</option>
+            <option value="HealthTech">HealthTech</option>
+            <option value="GameDev">GameDev</option>
+          </select>
+          <select class="filter-select" id="people-avail-filter">
+            <option value="all">Any Availability</option>
+            <option value="full-time">Full-time</option>
+            <option value="part-time">Part-time</option>
+            <option value="weekends">Weekends</option>
+            <option value="flexible">Flexible</option>
+          </select>
+          <button class="btn btn-ghost btn-sm" id="people-reset-filters">Reset</button>
+        </div>
+      </div>
+
+      <div class="section-header">
+        <span class="results-count" id="people-count"></span>
+        <div class="sort-group">
+          <label class="sort-label">Sort by:</label>
+          <select class="filter-select" id="people-sort">
+            <option value="recent">Recently Joined</option>
+            <option value="name">Name A–Z</option>
+            <option value="exp-asc">Experience ↑</option>
+            <option value="exp-desc">Experience ↓</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="cards-grid" id="people-grid"></div>
+      <div class="empty-state hidden" id="people-empty">
+        <div class="empty-icon">👥</div>
+        <h3>No builders found</h3>
+        <p>Try adjusting your filters.</p>
+        <button class="btn btn-ghost btn-sm" id="people-reset-btn">Reset filters</button>
+      </div>
+    </div>
+  </main>
+
+  <div class="modal-overlay hidden" id="modal-overlay">
+    <div class="modal" id="user-modal">
+      <button class="modal-close" id="modal-close" aria-label="Close">✕</button>
+      <div id="modal-content"></div>
+    </div>
+  </div>
+
+  <nav class="bottom-nav">
+    <a href="index.html" class="bottom-nav-item">
+      <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+      <span>Explore</span>
+    </a>
+    <a href="people.html" class="bottom-nav-item active">
+      <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+      <span>People</span>
+    </a>
+    <a href="matches.html" class="bottom-nav-item">
+      <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+      <span>Matches</span>
+    </a>
+    <a href="profile.html" class="bottom-nav-item">
+      <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+      <span>Profile</span>
+    </a>
+  </nav>
+
+  <script src="js/data.js"></script>
+  <script src="js/matcher.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/people.js"></script>
+</body>
+</html>

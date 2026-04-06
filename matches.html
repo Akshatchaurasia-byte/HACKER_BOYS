@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Matches — DevMatch</title>
+  <meta name="description" content="View your personalized teammate matches on DevMatch. Ranked by skill compatibility and shared interests." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon">⚡</span>
+        <span class="logo-text">Dev<span class="logo-accent">Match</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Explore</a>
+        <a href="people.html" class="nav-link">People</a>
+        <a href="matches.html" class="nav-link active">My Matches</a>
+      </div>
+      <div class="nav-right">
+        <a href="profile.html" class="btn btn-primary btn-sm">Edit Profile</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="main-content matches-page">
+    <div class="container">
+      <!-- NO PROFILE STATE -->
+      <div id="no-profile-state" class="hero-empty hidden">
+        <div class="hero-empty-icon">⚡</div>
+        <h1>Create your profile first</h1>
+        <p>We need to know your skills and interests to find your best matches.</p>
+        <a href="profile.html" class="btn btn-primary btn-lg">Create My Profile →</a>
+      </div>
+
+      <!-- MATCH CONTENT -->
+      <div id="match-content" class="hidden">
+        <div class="matches-header">
+          <div class="matches-user-info" id="matches-user-info"></div>
+          <div class="matches-actions">
+            <button class="btn btn-ghost btn-sm" id="refresh-matches">🔄 Refresh</button>
+            <a href="profile.html" class="btn btn-ghost btn-sm">✏️ Edit Profile</a>
+          </div>
+        </div>
+
+        <!-- Approval requests panel (requests sent to me via email) -->
+        <div id="approval-requests-panel" style="margin-top:1rem;display:none">
+          <h3 class="section-title" style="font-size:1rem">Approval Requests</h3>
+          <div id="approval-requests-list" style="margin-top:0.5rem"></div>
+        </div>
+
+        <div class="match-score-legend">
+          <h2 class="section-title">Your Top Teammate Matches</h2>
+          <div class="score-legend">
+            <div class="legend-item"><span class="legend-dot excellent"></span>Excellent (80%+)</div>
+            <div class="legend-item"><span class="legend-dot good"></span>Good (60–79%)</div>
+            <div class="legend-item"><span class="legend-dot fair"></span>Fair (40–59%)</div>
+          </div>
+        </div>
+
+        <div class="matches-filters">
+          <button class="filter-tab active" data-match-filter="all" id="mf-all">All Matches</button>
+          <button class="filter-tab" data-match-filter="80" id="mf-excellent">Excellent</button>
+          <button class="filter-tab" data-match-filter="60" id="mf-good">Good Fit</button>
+          <button class="filter-tab" data-match-filter="complementary" id="mf-comp">Complementary</button>
+        </div>
+
+        <!-- SWIPE DECK (bonus feature) -->
+        <div class="swipe-section" id="swipe-section">
+          <div class="swipe-hint">
+            <span>← Skip</span>
+            <span class="swipe-hint-center">Swipe to connect</span>
+            <span>Connect →</span>
+          </div>
+          <div class="swipe-deck" id="swipe-deck">
+            <!-- Populated by JS -->
+          </div>
+          <div class="swipe-controls">
+            <button class="swipe-btn skip" id="swipe-skip" aria-label="Skip">✕</button>
+            <button class="swipe-btn connect" id="swipe-connect" aria-label="Connect">💚</button>
+          </div>
+        </div>
+
+        <div class="section-header" style="margin-top:3rem">
+          <h3 class="section-title" style="font-size:1.25rem">All Ranked Matches</h3>
+          <span class="results-count" id="match-count"></span>
+        </div>
+        <div class="matches-grid" id="matches-grid"></div>
+
+        <div class="empty-state hidden" id="match-empty">
+          <div class="empty-icon">😔</div>
+          <h3>No matches in this range</h3>
+          <p>Try updating your profile with more skills, or check back as more builders join!</p>
+          <a href="profile.html" class="btn btn-primary">Update Profile</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- CONNECT MODAL -->
+  <div class="modal-overlay hidden" id="connect-modal-overlay">
+    <div class="modal connect-modal" id="connect-modal">
+      <button class="modal-close" id="connect-modal-close">✕</button>
+      <div id="connect-modal-content"></div>
+    </div>
+  </div>
+
+  <nav class="bottom-nav">
+    <a href="index.html" class="bottom-nav-item">
+      <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+      <span>Explore</span>
+    </a>
+    <a href="people.html" class="bottom-nav-item">
+      <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+      <span>People</span>
+    </a>
+    <a href="matches.html" class="bottom-nav-item active">
+      <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+      <span>Matches</span>
+    </a>
+    <a href="profile.html" class="bottom-nav-item">
+      <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+      <span>Profile</span>
+    </a>
+  </nav>
+
+  <script src="js/data.js"></script>
+  <script src="js/matcher.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/matches.js"></script>
+</body>
+</html>
