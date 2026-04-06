@@ -1,0 +1,27 @@
+﻿var bcrypt = require('bcryptjs');
+var fs = require('fs');
+var path = require('path');
+
+var DB_PATH = path.join(__dirname, 'data', 'db.json');
+var salt = bcrypt.genSaltSync(10);
+var defaultPass = bcrypt.hashSync('password123', salt);
+
+var SEED_USERS = [
+  { id:'u1', name:'Ananya Krishnan', email:'ananya@devmatch.io', passwordHash:defaultPass, role:'Full Stack Developer', bio:'Passionate about building products that scale. Love React and Python.', experience:'advanced', availability:'full-time', skills:['react','typescript','python','fastapi','postgres'], interests:['aiml','saas','healthtech'], github:'ananya-k', linkedin:'linkedin.com/in/ananya-k', avatarColor:0, joinedAt:Date.now()-86400000*5 },
+  { id:'u2', name:'Rahul Sharma', email:'rahul@devmatch.io', passwordHash:defaultPass, role:'ML Engineer', bio:'Working on NLP and recommendation systems at IIT.', experience:'advanced', availability:'weekends', skills:['python','ml','nlp','llm','dl'], interests:['aiml','healthtech','edtech'], github:'rahul-s', linkedin:'linkedin.com/in/rahul-s', avatarColor:1, joinedAt:Date.now()-86400000*3 },
+  { id:'u3', name:'Jake Martinez', email:'jake@devmatch.io', passwordHash:defaultPass, role:'Web3 Developer', bio:'Solidity dev building DeFi protocols.', experience:'intermediate', availability:'full-time', skills:['solidity','web3js','defi','react','ipfs'], interests:['web3','fintech'], github:'jake-m3', linkedin:'', avatarColor:2, joinedAt:Date.now()-86400000*7 },
+  { id:'u4', name:'Priya Patel', email:'priya@devmatch.io', passwordHash:defaultPass, role:'UX Designer', bio:'Figma-first designer who codes HTML/CSS.', experience:'intermediate', availability:'flexible', skills:['figma','ux','html_css','react'], interests:['saas','healthtech','social'], github:'priya-p', linkedin:'linkedin.com/in/priya-p', avatarColor:3, joinedAt:Date.now()-86400000*2 },
+  { id:'u5', name:'Carlos Mendez', email:'carlos@devmatch.io', passwordHash:defaultPass, role:'Backend Engineer', bio:'Go/Rust systems builder.', experience:'expert', availability:'part-time', skills:['go','rust','docker','kubernetes','redis'], interests:['aiml','saas','security'], github:'cmendez', linkedin:'linkedin.com/in/carlosmendez', avatarColor:4, joinedAt:Date.now()-86400000*10 },
+  { id:'u6', name:'Diya Roy', email:'diya@devmatch.io', passwordHash:defaultPass, role:'AI Research Intern', bio:'Undergraduate at BITS working on computer vision.', experience:'beginner', availability:'full-time', skills:['python','cv','dl','ml'], interests:['aiml','healthtech','climatetech'], github:'diya-r', linkedin:'linkedin.com/in/diya-r', avatarColor:5, joinedAt:Date.now()-86400000*1 },
+  { id:'u7', name:'Sam Chen', email:'sam@devmatch.io', passwordHash:defaultPass, role:'Game Developer', bio:'Unity + Three.js dev, AR/VR enthusiast.', experience:'intermediate', availability:'weekends', skills:['unity','threejs','react','typescript'], interests:['gamedev','ar_vr'], github:'sam-c-dev', linkedin:'', avatarColor:6, joinedAt:Date.now()-86400000*4 },
+  { id:'u8', name:'Amara Osei', email:'amara@devmatch.io', passwordHash:defaultPass, role:'DevOps Engineer', bio:'Cloud infra and deployment automation expert.', experience:'expert', availability:'flexible', skills:['aws','docker','kubernetes','postgres','redis'], interests:['saas','security','aiml'], github:'amara-o', linkedin:'linkedin.com/in/amara-o', avatarColor:7, joinedAt:Date.now()-86400000*6 },
+  { id:'u9', name:'Lena Walsh', email:'lena@devmatch.io', passwordHash:defaultPass, role:'Flutter Developer', bio:'Mobile-first thinker. Built 3 apps on Play Store.', experience:'advanced', availability:'full-time', skills:['flutter','reactnative','node','mongodb'], interests:['healthtech','edtech','social'], github:'lena-w', linkedin:'linkedin.com/in/lena-w', avatarColor:0, joinedAt:Date.now()-86400000*8 },
+  { id:'u10', name:'Hamid Reza', email:'hamid@devmatch.io', passwordHash:defaultPass, role:'FinTech Enthusiast', bio:'Economics + CS hybrid. Building payment infra.', experience:'intermediate', availability:'part-time', skills:['python','node','postgres','react'], interests:['fintech','saas','web3'], github:'hamid-r', linkedin:'linkedin.com/in/hamid-r', avatarColor:1, joinedAt:Date.now()-86400000*9 },
+  { id:'u11', name:'Sophie Brunner', email:'sophie@devmatch.io', passwordHash:defaultPass, role:'NLP Researcher', bio:'PhD track at TU Munich. Multilingual LLM fine-tuning.', experience:'expert', availability:'weekends', skills:['python','nlp','llm','ml','dl'], interests:['aiml','edtech','social'], github:'sophie-b-nlp', linkedin:'linkedin.com/in/sophie-b', avatarColor:2, joinedAt:Date.now()-86400000*12 },
+  { id:'u12', name:'Kenji Tanaka', email:'kenji@devmatch.io', passwordHash:defaultPass, role:'React Developer', bio:'Frontend craftsman who cares about micro-interactions.', experience:'intermediate', availability:'flexible', skills:['react','typescript','html_css','threejs'], interests:['saas','gamedev','ar_vr'], github:'kenji-t', linkedin:'linkedin.com/in/kenji-t', avatarColor:3, joinedAt:Date.now()-86400000*11 }
+];
+
+var db = { users: SEED_USERS, connections: [] };
+fs.writeFileSync(DB_PATH, JSON.stringify(db, null, 2), 'utf-8');
+console.log('Seeded ' + SEED_USERS.length + ' users into ' + DB_PATH);
+console.log('Default password for all seed users: password123');

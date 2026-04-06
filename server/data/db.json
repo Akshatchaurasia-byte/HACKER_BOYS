@@ -1,0 +1,414 @@
+{
+  "users": [
+    {
+      "id": "u1",
+      "name": "Ananya Krishnan",
+      "email": "ananya@devmatch.io",
+      "passwordHash": "$2a$10$Ri.jO9Be6lLEr5YglEUWWu0U8sENEPEu1a0mGLHZlemdOYRE95UvG",
+      "role": "Full Stack Developer",
+      "bio": "Passionate about building products that scale. Love React and Python.",
+      "experience": "advanced",
+      "availability": "full-time",
+      "skills": [
+        "react",
+        "typescript",
+        "python",
+        "fastapi",
+        "postgres"
+      ],
+      "interests": [
+        "aiml",
+        "saas",
+        "healthtech"
+      ],
+      "github": "ananya-k",
+      "linkedin": "linkedin.com/in/ananya-k",
+      "avatarColor": 0,
+      "joinedAt": 1775031556418
+    },
+    {
+      "id": "u2",
+      "name": "Rahul Sharma",
+      "email": "rahul@devmatch.io",
+      "passwordHash": "$2a$10$Ri.jO9Be6lLEr5YglEUWWu0U8sENEPEu1a0mGLHZlemdOYRE95UvG",
+      "role": "ML Engineer",
+      "bio": "Working on NLP and recommendation systems at IIT.",
+      "experience": "advanced",
+      "availability": "weekends",
+      "skills": [
+        "python",
+        "ml",
+        "nlp",
+        "llm",
+        "dl"
+      ],
+      "interests": [
+        "aiml",
+        "healthtech",
+        "edtech"
+      ],
+      "github": "rahul-s",
+      "linkedin": "linkedin.com/in/rahul-s",
+      "avatarColor": 1,
+      "joinedAt": 1775204356418
+    },
+    {
+      "id": "u3",
+      "name": "Jake Martinez",
+      "email": "jake@devmatch.io",
+      "passwordHash": "$2a$10$Ri.jO9Be6lLEr5YglEUWWu0U8sENEPEu1a0mGLHZlemdOYRE95UvG",
+      "role": "Web3 Developer",
+      "bio": "Solidity dev building DeFi protocols.",
+      "experience": "intermediate",
+      "availability": "full-time",
+      "skills": [
+        "solidity",
+        "web3js",
+        "defi",
+        "react",
+        "ipfs"
+      ],
+      "interests": [
+        "web3",
+        "fintech"
+      ],
+      "github": "jake-m3",
+      "linkedin": "",
+      "avatarColor": 2,
+      "joinedAt": 1774858756418
+    },
+    {
+      "id": "u4",
+      "name": "Priya Patel",
+      "email": "priya@devmatch.io",
+      "passwordHash": "$2a$10$Ri.jO9Be6lLEr5YglEUWWu0U8sENEPEu1a0mGLHZlemdOYRE95UvG",
+      "role": "UX Designer",
+      "bio": "Figma-first designer who codes HTML/CSS.",
+      "experience": "intermediate",
+      "availability": "flexible",
+      "skills": [
+        "figma",
+        "ux",
+        "html_css",
+        "react"
+      ],
+      "interests": [
+        "saas",
+        "healthtech",
+        "social"
+      ],
+      "github": "priya-p",
+      "linkedin": "linkedin.com/in/priya-p",
+      "avatarColor": 3,
+      "joinedAt": 1775290756418
+    },
+    {
+      "id": "u5",
+      "name": "Carlos Mendez",
+      "email": "carlos@devmatch.io",
+      "passwordHash": "$2a$10$Ri.jO9Be6lLEr5YglEUWWu0U8sENEPEu1a0mGLHZlemdOYRE95UvG",
+      "role": "Backend Engineer",
+      "bio": "Go/Rust systems builder.",
+      "experience": "expert",
+      "availability": "part-time",
+      "skills": [
+        "go",
+        "rust",
+        "docker",
+        "kubernetes",
+        "redis"
+      ],
+      "interests": [
+        "aiml",
+        "saas",
+        "security"
+      ],
+      "github": "cmendez",
+      "linkedin": "linkedin.com/in/carlosmendez",
+      "avatarColor": 4,
+      "joinedAt": 1774599556418
+    },
+    {
+      "id": "u6",
+      "name": "Diya Roy",
+      "email": "diya@devmatch.io",
+      "passwordHash": "$2a$10$Ri.jO9Be6lLEr5YglEUWWu0U8sENEPEu1a0mGLHZlemdOYRE95UvG",
+      "role": "AI Research Intern",
+      "bio": "Undergraduate at BITS working on computer vision.",
+      "experience": "beginner",
+      "availability": "full-time",
+      "skills": [
+        "python",
+        "cv",
+        "dl",
+        "ml"
+      ],
+      "interests": [
+        "aiml",
+        "healthtech",
+        "climatetech"
+      ],
+      "github": "diya-r",
+      "linkedin": "linkedin.com/in/diya-r",
+      "avatarColor": 5,
+      "joinedAt": 1775377156418
+    },
+    {
+      "id": "u7",
+      "name": "Sam Chen",
+      "email": "sam@devmatch.io",
+      "passwordHash": "$2a$10$Ri.jO9Be6lLEr5YglEUWWu0U8sENEPEu1a0mGLHZlemdOYRE95UvG",
+      "role": "Game Developer",
+      "bio": "Unity + Three.js dev, AR/VR enthusiast.",
+      "experience": "intermediate",
+      "availability": "weekends",
+      "skills": [
+        "unity",
+        "threejs",
+        "react",
+        "typescript"
+      ],
+      "interests": [
+        "gamedev",
+        "ar_vr"
+      ],
+      "github": "sam-c-dev",
+      "linkedin": "",
+      "avatarColor": 6,
+      "joinedAt": 1775117956418
+    },
+    {
+      "id": "u8",
+      "name": "Amara Osei",
+      "email": "amara@devmatch.io",
+      "passwordHash": "$2a$10$Ri.jO9Be6lLEr5YglEUWWu0U8sENEPEu1a0mGLHZlemdOYRE95UvG",
+      "role": "DevOps Engineer",
+      "bio": "Cloud infra and deployment automation expert.",
+      "experience": "expert",
+      "availability": "flexible",
+      "skills": [
+        "aws",
+        "docker",
+        "kubernetes",
+        "postgres",
+        "redis"
+      ],
+      "interests": [
+        "saas",
+        "security",
+        "aiml"
+      ],
+      "github": "amara-o",
+      "linkedin": "linkedin.com/in/amara-o",
+      "avatarColor": 7,
+      "joinedAt": 1774945156418
+    },
+    {
+      "id": "u9",
+      "name": "Lena Walsh",
+      "email": "lena@devmatch.io",
+      "passwordHash": "$2a$10$Ri.jO9Be6lLEr5YglEUWWu0U8sENEPEu1a0mGLHZlemdOYRE95UvG",
+      "role": "Flutter Developer",
+      "bio": "Mobile-first thinker. Built 3 apps on Play Store.",
+      "experience": "advanced",
+      "availability": "full-time",
+      "skills": [
+        "flutter",
+        "reactnative",
+        "node",
+        "mongodb"
+      ],
+      "interests": [
+        "healthtech",
+        "edtech",
+        "social"
+      ],
+      "github": "lena-w",
+      "linkedin": "linkedin.com/in/lena-w",
+      "avatarColor": 0,
+      "joinedAt": 1774772356418
+    },
+    {
+      "id": "u10",
+      "name": "Hamid Reza",
+      "email": "hamid@devmatch.io",
+      "passwordHash": "$2a$10$Ri.jO9Be6lLEr5YglEUWWu0U8sENEPEu1a0mGLHZlemdOYRE95UvG",
+      "role": "FinTech Enthusiast",
+      "bio": "Economics + CS hybrid. Building payment infra.",
+      "experience": "intermediate",
+      "availability": "part-time",
+      "skills": [
+        "python",
+        "node",
+        "postgres",
+        "react"
+      ],
+      "interests": [
+        "fintech",
+        "saas",
+        "web3"
+      ],
+      "github": "hamid-r",
+      "linkedin": "linkedin.com/in/hamid-r",
+      "avatarColor": 1,
+      "joinedAt": 1774685956418
+    },
+    {
+      "id": "u11",
+      "name": "Sophie Brunner",
+      "email": "sophie@devmatch.io",
+      "passwordHash": "$2a$10$Ri.jO9Be6lLEr5YglEUWWu0U8sENEPEu1a0mGLHZlemdOYRE95UvG",
+      "role": "NLP Researcher",
+      "bio": "PhD track at TU Munich. Multilingual LLM fine-tuning.",
+      "experience": "expert",
+      "availability": "weekends",
+      "skills": [
+        "python",
+        "nlp",
+        "llm",
+        "ml",
+        "dl"
+      ],
+      "interests": [
+        "aiml",
+        "edtech",
+        "social"
+      ],
+      "github": "sophie-b-nlp",
+      "linkedin": "linkedin.com/in/sophie-b",
+      "avatarColor": 2,
+      "joinedAt": 1774426756418
+    },
+    {
+      "id": "u12",
+      "name": "Kenji Tanaka",
+      "email": "kenji@devmatch.io",
+      "passwordHash": "$2a$10$Ri.jO9Be6lLEr5YglEUWWu0U8sENEPEu1a0mGLHZlemdOYRE95UvG",
+      "role": "React Developer",
+      "bio": "Frontend craftsman who cares about micro-interactions.",
+      "experience": "intermediate",
+      "availability": "flexible",
+      "skills": [
+        "react",
+        "typescript",
+        "html_css",
+        "threejs"
+      ],
+      "interests": [
+        "saas",
+        "gamedev",
+        "ar_vr"
+      ],
+      "github": "kenji-t",
+      "linkedin": "linkedin.com/in/kenji-t",
+      "avatarColor": 3,
+      "joinedAt": 1774513156418
+    },
+    {
+      "id": "u1775465657477",
+      "name": "Raghav",
+      "email": "raj@asdf",
+      "passwordHash": "$2a$10$3LW7.bzSzv.wV.ivAgPzF.IpHB6RTBqLnDRvHA1wPHBYXM46g1ihq",
+      "role": "Backend dev.",
+      "bio": "",
+      "experience": "beginner",
+      "availability": "weekends",
+      "skills": [
+        "python",
+        "web3js",
+        "java"
+      ],
+      "interests": [
+        "web3",
+        "climatetech",
+        "edtech",
+        "aiml"
+      ],
+      "seekingSkills": [],
+      "github": "pratap-raghvendra",
+      "linkedin": "",
+      "avatarColor": 5,
+      "joinedAt": 1775465657477
+    }
+  ],
+  "connections": [],
+  "approval_requests": [
+    {
+      "id": "ar_test_001",
+      "email": "trakinmining2006@gmail.com",
+      "token": "test_approval_token_abc123def456",
+      "data": {
+        "requester": {
+          "name": "Test Requester",
+          "email": "test@example.com"
+        },
+        "message": "Test approval message"
+      },
+      "status": "pending",
+      "createdAt": 1712404800000
+    },
+    {
+      "email": "keshavsaini2006rtk86@gmail.com",
+      "data": {
+        "requester": {
+          "id": "u1775474143372",
+          "name": "Keshav Saini"
+        },
+        "targetId": "u6",
+        "message": ""
+      },
+      "token": "c3a925796e958a42a58bb4f3d78561d517bd6e6f6b441e54",
+      "status": "approved",
+      "id": "ar_1775479269492",
+      "createdAt": 1775479269492,
+      "resolvedAt": 1775479290975
+    },
+    {
+      "email": "trakinmining2006@gmail.com",
+      "data": {
+        "requester": {
+          "id": "u1775474143372",
+          "name": "Keshav Saini"
+        },
+        "targetId": "u2",
+        "message": "want to collab with you"
+      },
+      "token": "a231a63889f81bc2d7c41b93633f86191d2eb328b887f361",
+      "status": "approved",
+      "id": "ar_1775479346699",
+      "createdAt": 1775479346699,
+      "resolvedAt": 1775479367158
+    },
+    {
+      "email": "pratapraghvendra7407@gmail.com",
+      "data": {
+        "requester": {
+          "id": "u1775474143372",
+          "name": "Keshav Saini"
+        },
+        "targetId": "u6",
+        "message": "want to collab with you in hackathon"
+      },
+      "token": "d6da62cadc8c7752d6b85aec1ee7e394d838b0f43f7a4db4",
+      "status": "pending",
+      "id": "ar_1775479554009",
+      "createdAt": 1775479554009
+    },
+    {
+      "email": "trakinmining2006@gmail.com",
+      "data": {
+        "requester": {
+          "id": "u1775474143372",
+          "name": "Keshav Saini"
+        },
+        "targetId": "u6",
+        "message": "want to colab with you"
+      },
+      "token": "e306240620092ba84be2e649ab49de31edb68bc3ece0d218",
+      "status": "approved",
+      "id": "ar_1775482119609",
+      "createdAt": 1775482119610,
+      "resolvedAt": 1775482164969
+    }
+  ]
+}
